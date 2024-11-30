@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    text-align: center;
+    padding: 50px;
+}
+/**/
+header{
+    font-size: 20px;
+}
+
+#timer{
+    border-color: black;
+    font-size: 200px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 60px 0;
+    width: 100%;
+}
+
+.timer{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#message {
+    font-size: 24px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.box-continer{
+    flex-direction: column;
+    align-items: center;
+}
+
+button{
+    padding: 10px 20px;
+    font-size: 30px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: black;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+#minutes60 {
+    color: white;
+    background-color: #ff4432;
+    padding: 10px 45px;
+    border: none;
+}
+#minutes25 {
+    color: white;
+    background-color:  #4CAF50;
+    padding: 10px 45px;
+    border: none;
+}
+#minutes10 {
+    color: white;
+    background-color: #007BFF;
+    padding: 10px 45px;
+    border: none;
+}
+
+#startButton{
+    color: white;
+    background-color: #ff4432;
+    border: none;
+}
+
+#resetButton{
+    color: white;
+    background-color: #007BFF;
+    border: none;  
+}
+
+#stopButton{
+    color: white;
+    background-color: #4CAF50; 
+    border: none;
+}
+
+#save{
+    color: white;
+    background-color: black;
+    border: none;
+}
+
+#Url{
+    width:60%
+
+}
+
+input[type="text"] {
+    margin: 30px;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid black; /* Purple border for a professional, focused look */
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+  
+
+input[type="text"]::placeholder {
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+input[type="text"]:focus {
+    border-color: #afd5ee; /* Blue to signify active focus */
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
+}
+
+.spotify{
+    font-size: 30px;
+}
+
+#set{
+    padding: 10px 45px;
+    color: black;
+    border-radius: 2px solid black;
+    background-color:#f0f8ff;
+}
+
+#toggle-btn{
+    margin-top: 20px;
+    padding: 10px 45px;
+    color: black;
+    border-radius: 2px solid black;
+    background-color: #f0f8ff;
+}
+
+#toggle-content{
+    font-size: 20px;  
+}
+
+.hidden{
+    display: none;
+}
+
+#savedate{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
