@@ -163,12 +163,28 @@ function saveUrl(){
 }
 //playlistを開く
 function openPlaylist(){
+    noteContent = document.getElementById('Url');
     if(!isWorking && noteContent.value.trim()!==""){
     const playlistUrl = document.getElementById('Url').value;
-    const playlistWindow = window.open(playlistUrl);
+
+   
+
+    console.log("開きます",playlistUrl)
+
+    playlistWindow = window.open(playlistUrl);
+
+    if(!playlistWindow){
+        console.error("ブロックされている可能性があります。")
+        return;
+    }
+
     setTimeout(() => {
         playlistWindow.close(); // ウィンドウを閉じる
-    },breakTime * 1000 );}
+    },breakTime * 1000 );
+    }else{
+        console.erroe("urlが指定されていないです")
+        return;
+    }
 }
 
 // ボタンのイベントリスナー
