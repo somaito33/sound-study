@@ -9,7 +9,7 @@ const messageElement = document.getElementById('message');
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const resetButton = document.getElementById('resetButton');
-const savebutton = document.getElementById('save');
+const savebutton = document.getElementById('savebutton');
 const savedate = document.getElementById('savedate');
 const toggleBtn = document.getElementById('toggle-btn');
 const toggleContent = document.getElementById('toggle-content');
@@ -92,26 +92,30 @@ function resetTimer() {
 function togglePhase() {
     isWorking = !isWorking;
     remainingTime = isWorking ? workTime : breakTime;
+
     document.body.style.backgroundColor = isWorking ? "#f0f8ff" : "#ffefd5";
     messageElement.textContent = isWorking
         ? "作業を始めましょう！"
         : "休憩してください！";
+
+    if(!isWorking){
+        openPlaylist();
+        savestudy();
+    }
+
     savestudy();
     updateTimerDisplay();
     startTimer();
-    openPlaylist();
     // 次のフェーズを自動的に開始
 }
 
 function savestudy() {
-    if(!isWorking){
         const sessionTime = workMinutes;
         const savedSessions = JSON.parse(localStorage.getItem("sessions")) || [];
         savedSessions.push(sessionTime);
         localStorage.setItem("sessions", JSON.stringify(savedSessions));
         renderSavedSessions();
         calculateTotalTime();
-    }
 }
 
 function renderSavedSessions() {
@@ -142,6 +146,12 @@ window.addEventListener("load", () => {
     renderSavedSessions();
 });
 
+function calculateTotalTime() {
+    const savedSessions = JSON.parse(localStorage.getItem("sessions")) || [];
+    const totalTime = savedSessions.reduce((sum, sessionTime) => sum + sessionTime, 0); // 合計時間を計算
+    document.getElementById("total-time").textContent = `total: ${totalTime}分`; // 合計時間を表示
+}
+
 
 window.onload =function(){
     const savedNote = localStorage.getItem('Url');
@@ -149,43 +159,25 @@ window.onload =function(){
         document.getElementById('Url').value = savedNote;
     }
 }
-
-function calculateTotalTime() {
-    const savedSessions = JSON.parse(localStorage.getItem("sessions")) || [];
-    const totalTime = savedSessions.reduce((sum, sessionTime) => sum + sessionTime, 0); // 合計時間を計算
-    document.getElementById("total-time").textContent = `total: ${totalTime}分`; // 合計時間を表示
-}
-
 //urlを保存
 function saveUrl(){
     const noteContent = document.getElementById('Url').value;
     localStorage.setItem('Url',noteContent);
 }
 //playlistを開く
-function openPlaylist(){
-    noteContent = document.getElementById('Url');
-    if(!isWorking && noteContent.value.trim()!==""){
+function openPlaylist() {
     const playlistUrl = document.getElementById('Url').value;
-
-   
-
-    console.log("開きます",playlistUrl)
-
-    playlistWindow = window.open(playlistUrl);
-
-    if(!playlistWindow){
-        console.error("ブロックされている可能性があります。")
+    if(!playlistUrl){
         return;
     }
+
+    playlistWindow = window.open(playlistUrl,"_blank")
 
     setTimeout(() => {
         playlistWindow.close(); // ウィンドウを閉じる
-    },breakTime * 1000 );
-    }else{
-        console.erroe("urlが指定されていないです")
-        return;
-    }
+    }, breakTime * 1000);
 }
+
 
 // ボタンのイベントリスナー
 startButton.addEventListener('click', startTimer);
