@@ -102,8 +102,6 @@ function togglePhase() {
         openPlaylist();
         savestudy();
     }
-
-    savestudy();
     updateTimerDisplay();
     startTimer();
     // 次のフェーズを自動的に開始
