@@ -26,8 +26,10 @@ toggleBtn.addEventListener("click",()=>{
 });
 
 //ボタンをおしたらじかん変更
-function setTimer(workMinutes,breakMinutes) {
+function setTimer(M,MM) {
     clearInterval(timerInterval);
+    workMinutes  = M;
+    breakMinutes = MM;
     timerInterval = null;
     workTime = workMinutes * 60;
     breakTime = breakMinutes * 60;
@@ -49,6 +51,7 @@ function updateTimerDisplay() {
 function set(){
     workMinutes = parseInt(prompt("Enter mintutes:","25"))||25;
     breakMinutes = parseInt(prompt("Enter minitutes:","5"))||5;
+    timerInterval = null;
     workTime = workMinutes * 60;
     breakTime = breakMinutes * 60;
     remainingTime = workTime;
@@ -102,18 +105,19 @@ function togglePhase() {
         openPlaylist();
         savestudy();
     }
+
     updateTimerDisplay();
     startTimer();
     // 次のフェーズを自動的に開始
 }
 
 function savestudy() {
-        const sessionTime = workMinutes;
-        const savedSessions = JSON.parse(localStorage.getItem("sessions")) || [];
-        savedSessions.push(sessionTime);
-        localStorage.setItem("sessions", JSON.stringify(savedSessions));
-        renderSavedSessions();
-        calculateTotalTime();
+    const sessionTime = workMinutes;
+    const savedSessions = JSON.parse(localStorage.getItem("sessions")) || [];
+    savedSessions.push(sessionTime);
+    localStorage.setItem("sessions", JSON.stringify(savedSessions));
+    renderSavedSessions();
+    calculateTotalTime();
 }
 
 function renderSavedSessions() {
